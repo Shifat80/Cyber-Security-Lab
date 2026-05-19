@@ -1,0 +1,400 @@
+<!-- Save as: index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeuroSec Blog</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#0b0f14;
+      --card:#111827;
+      --soft:#1f2937;
+      --text:#f3f4f6;
+      --muted:#9ca3af;
+      --accent:#00d4ff;
+      --border:rgba(255,255,255,0.08);
+    }
+
+    body{
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(1100px, 92%);
+      margin:auto;
+    }
+
+    /* Navbar */
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,20,0.7);
+      border-bottom:1px solid var(--border);
+    }
+
+    .nav-wrapper{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
+    }
+
+    .logo{
+      font-size:1.4rem;
+      font-weight:700;
+      color:var(--accent);
+      letter-spacing:1px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:24px;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      transition:0.3s;
+      font-size:0.95rem;
+    }
+
+    .nav-links a:hover{
+      color:var(--text);
+    }
+
+    /* Hero */
+    .hero{
+      padding:100px 0 70px;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:3.5rem;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero h1 span{
+      color:var(--accent);
+    }
+
+    .hero p{
+      max-width:700px;
+      margin:auto;
+      color:var(--muted);
+      font-size:1.1rem;
+    }
+
+    .hero-btn{
+      display:inline-block;
+      margin-top:35px;
+      padding:14px 28px;
+      background:var(--accent);
+      color:#000;
+      border-radius:10px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .hero-btn:hover{
+      transform:translateY(-3px);
+      opacity:0.9;
+    }
+
+    /* Section */
+    section{
+      padding:40px 0 80px;
+    }
+
+    .section-title{
+      margin-bottom:30px;
+      font-size:2rem;
+    }
+
+    /* Blog Grid */
+    .blog-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:24px;
+    }
+
+    .blog-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+      transition:0.3s ease;
+    }
+
+    .blog-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(0,212,255,0.3);
+    }
+
+    .blog-image{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+    }
+
+    .blog-content{
+      padding:24px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:6px 12px;
+      background:rgba(0,212,255,0.1);
+      color:var(--accent);
+      border-radius:50px;
+      font-size:0.8rem;
+      margin-bottom:14px;
+    }
+
+    .blog-title{
+      font-size:1.3rem;
+      margin-bottom:12px;
+    }
+
+    .blog-text{
+      color:var(--muted);
+      font-size:0.95rem;
+      margin-bottom:20px;
+    }
+
+    .read-more{
+      color:var(--accent);
+      font-weight:600;
+      font-size:0.95rem;
+    }
+
+    /* Newsletter */
+    .newsletter{
+      background:linear-gradient(to right, #111827, #0f172a);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:50px 30px;
+      text-align:center;
+      margin-top:40px;
+    }
+
+    .newsletter h2{
+      margin-bottom:12px;
+    }
+
+    .newsletter p{
+      color:var(--muted);
+      margin-bottom:25px;
+    }
+
+    .newsletter form{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .newsletter input{
+      padding:14px 16px;
+      width:300px;
+      border:none;
+      border-radius:10px;
+      background:#0b1220;
+      color:white;
+      outline:none;
+    }
+
+    .newsletter button{
+      padding:14px 22px;
+      border:none;
+      border-radius:10px;
+      background:var(--accent);
+      color:black;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    /* Footer */
+    footer{
+      padding:30px 0;
+      border-top:1px solid var(--border);
+      text-align:center;
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    /* Responsive */
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:2.4rem;
+      }
+
+      .nav-links{
+        gap:14px;
+      }
+
+      .newsletter form{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .newsletter input{
+        width:100%;
+        max-width:400px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="container nav-wrapper">
+      <div class="logo">NeuroSec</div>
+
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">AI</a>
+        <a href="#">Security</a>
+        <a href="#">Tech</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero container">
+    <h1>Modern Insights on <span>AI</span>, Tech & Cyber Security</h1>
+
+    <p>
+      A minimalist blog platform focused on artificial intelligence,
+      cybersecurity trends, ethical hacking, and modern technology.
+    </p>
+
+    <a href="#" class="hero-btn">Explore Articles</a>
+  </header>
+
+  <!-- Blog Section -->
+  <section class="container">
+
+    <h2 class="section-title">Latest Posts</h2>
+
+    <div class="blog-grid">
+
+      <!-- Card 1 -->
+      <article class="blog-card">
+        <img 
+          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" 
+          class="blog-image"
+          alt="AI"
+        />
+
+        <div class="blog-content">
+          <span class="tag">Artificial Intelligence</span>
+
+          <h3 class="blog-title">
+            The Future of Generative AI in 2026
+          </h3>
+
+          <p class="blog-text">
+            Explore how modern AI models are transforming automation,
+            creativity, and software engineering workflows.
+          </p>
+
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="blog-card">
+        <img 
+          src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?q=80&w=1200&auto=format&fit=crop" 
+          class="blog-image"
+          alt="Cyber Security"
+        />
+
+        <div class="blog-content">
+          <span class="tag">Cyber Security</span>
+
+          <h3 class="blog-title">
+            Top Security Threats Developers Ignore
+          </h3>
+
+          <p class="blog-text">
+            Learn the most common vulnerabilities modern developers
+            overlook and how to secure your applications.
+          </p>
+
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="blog-card">
+        <img 
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" 
+          class="blog-image"
+          alt="Tech"
+        />
+
+        <div class="blog-content">
+          <span class="tag">Technology</span>
+
+          <h3 class="blog-title">
+            Minimal Developer Setups That Boost Productivity
+          </h3>
+
+          <p class="blog-text">
+            Discover clean workspace setups, lightweight tools,
+            and productivity systems used by elite developers.
+          </p>
+
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+      <h2>Subscribe to the Newsletter</h2>
+
+      <p>
+        Get the latest AI, cybersecurity, and technology articles directly in your inbox.
+      </p>
+
+      <form>
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      © 2026 NeuroSec Blog — Modern AI & Security Content.
+    </div>
+  </footer>
+
+</body>
+</html>
